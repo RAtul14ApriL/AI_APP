@@ -1,0 +1,26 @@
+from textblob import TextBlob
+
+class ChatBot:
+    def __init__(self):
+        self.sentiment_analyzer = TextBlob("")
+    
+    def start_chat(self):
+        print("Anondi: Hi! I am your virtual assistant Anondi. How can I help you?")
+        while True:
+            user_msg = input("You: ").strip()
+
+            self.sentiment_analyzer = TextBlob(user_msg)
+            sentiment_score = self.sentiment_analyzer.sentiment.polarity
+
+            if sentiment_score > 0:
+                chatbot_msg = f"Anondi: It's great to hear that!\n Sentiment Score: {sentiment_score}"
+            elif sentiment_score < 0:
+                chatbot_msg = f"Anondi: Sorry to hear that!\n Would you like to talk to a live agent?\n Sentiment Score: {sentiment_score}"
+            else:
+                chatbot_msg = f"Anondi: Hmm, I see. Can you provide more details?\n Sentiment Score: {sentiment_score}"
+
+            print(chatbot_msg)
+
+if __name__ == "__main__":
+    Anondi = ChatBot()
+    Anondi.start_chat()
